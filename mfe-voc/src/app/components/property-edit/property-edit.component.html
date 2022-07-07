@@ -1,0 +1,41 @@
+<div class="page-container" >	
+	<form class="p-3 mb-2" [formGroup]="innerForm" (ngSubmit)="save()">
+		<div class="form-row">
+			<div class="col-md-3"></div>
+			<div class="mb-3 col-md-6">
+				<h3>Edicion de Propiedad</h3>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<div class="form-row">
+			<div class="col-md-3"></div>
+			<mat-form-field class="form-group col-md-6"> 
+				<input matInput placeholder="Clave" formControlName="key"> 
+				<mat-error *ngIf="form.key.hasError('required')">Dato Obligatorio</mat-error> 
+			</mat-form-field>	
+			<div class="col-md-3"></div>
+		</div>
+		<div class="form-row">
+			<div class="col-md-3"></div>
+			<mat-form-field class="form-group col-md-6"> 
+				<input matInput placeholder="Descripcion" formControlName="description"> 
+				<mat-error *ngIf="form.description.hasError('required')">Dato Obligatorio</mat-error> 
+			</mat-form-field>
+			<div class="col-md-3"></div>
+		</div>
+		<div class="form-row">
+			<div class="col-md-3"></div>
+			<mat-form-field class="form-group col-md-6"> 
+				<input matInput placeholder="Valor" formControlName="value"> 
+				<mat-error *ngIf="form.value.hasError('required')">Dato Obligatorio</mat-error> 
+			</mat-form-field>
+			<div class="col-md-3"></div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-9 text-right">
+				<button type="button" class="btn btn-secondary mr-2" onclick="window.history.back()">Cancelar</button>
+				<button type="submit" class="btn btn-primary" ><i class="icon ion-md-save mr-2"></i>Grabar</button>
+			</div>
+		</div>
+	</form>
+</div>

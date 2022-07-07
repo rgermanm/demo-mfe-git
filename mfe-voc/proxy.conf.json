@@ -1,0 +1,14 @@
+{
+    "/api/*": {
+        "target": "https://test-voc.allianz.com.ar",
+        "secure": false,
+        "logLevel": "debug",
+        "headers" : {"host":"test-voc.allianz.com.ar"}
+    },
+    "/public/*": {
+        "target": "https://test-voc.allianz.com.ar",
+        "secure": false,
+        "logLevel": "debug",
+        "headers" : {"host":"test-voc.allianz.com.ar"}
+    }
+}

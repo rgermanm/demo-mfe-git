@@ -1,0 +1,71 @@
+<div class="page-container">
+	<h3>Batchs</h3>
+	<hr />
+	<div class="d-flex">
+		<div class="flex-grow-1">
+			<mat-form-field class="form-group col-md-6"> 
+				<mat-label>Categoria</mat-label>
+				<mat-select value="{{tableParams.filterCategory}}" (valueChange)="filterCategory($event)">
+					<mat-option value="">Todos</mat-option>
+					<mat-option value="SINIESTROS">Siniestros</mat-option>
+					<mat-option value="PREDENUNCIAS_AUTO">Siniestros Autos( Denuncia )</mat-option>
+					<mat-option value="HOME_CLAIMS">Home Claims</mat-option>
+					<mat-option value="HOME_CLAIMS_DENUNCIAS">Home Claims ( Denuncia )</mat-option>
+					<mat-option value="HOME_SELLS">Home Sells </mat-option>
+					<mat-option value="MOTOR_SELLS">Motor Sells </mat-option>
+					<mat-option value="MOTOR_CANCELATION">Motor Cancelation </mat-option>
+					<mat-option value="HOME_CANCELATION">Home Cancelation </mat-option>
+					<mat-option value="MOTOR_RESOLUTION">Motor Resolution </mat-option>
+					<mat-option value="HOME_RESOLUTION">Home Resolution </mat-option>
+				</mat-select>
+			</mat-form-field>	
+		</div>
+		<div class="flex-grow-1">
+			<mat-form-field class="form-group col-md-6"> 
+				<mat-label>Estado</mat-label>
+				<mat-select value="{{tableParams.filterState}}" (valueChange)="filterState($event)">
+					<mat-option value="">Todos</mat-option>
+					<mat-option value="PENDING_GENERATION">Pending Generation</mat-option>
+					<mat-option value="FINISH">Finish</mat-option>
+					<mat-option value="ERROR">Error</mat-option>
+					<mat-option value="ABORTED">Aborted</mat-option>
+				</mat-select>
+			</mat-form-field>	
+		</div>
+		
+		<div class="flex-grow-0 ml-3">
+			<img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+		</div>
+		<div class="flex-grow-1"></div>
+	</div>
+	<table class="table table-hover">
+		<thead class="thead">
+			<tr>
+				<th scope="col" (click)="changeSort('category')" style="cursor: pointer;">Categoria</th>
+				<th scope="col" (click)="changeSort('date')" style="cursor: pointer;">Fecha</th>
+				<th scope="col" (click)="changeSort('createTimestamp')" style="cursor: pointer;">Creado</th>
+				<th scope="col" (click)="changeSort('state')" style="cursor: pointer;">Estado</th>
+				<th scope="col">Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngIf="tableData.length==0">
+				<td colspan="5" class="text-center">No se encontraron resultados</td>
+			</tr>
+			<tr *ngFor="let row of tableData">
+				<td>{{row.category}}</td>
+				<td>{{row.date}}</td>
+				<td>{{row.createTimestamp | date:"dd/MM/yyyy HH:mm:ss"}}</td>
+				<td>{{row.state}}</td>
+				<td align="center">
+					<div>
+						<button type="button" class="btn btn-outline-primary btn-sm mr-2" routerLink="{{row.oid}}"  data-toggle="tooltip" data-placement="bottom" title="Ver"><i class="icon ion-md-eye"></i></button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<app-paginator [size]="tableParams.size" [total]="total"
+		[page]="tableParams.page" (changePage)="changePage($event)"
+		(changeSize)="changeSizePerPage($event)"></app-paginator>
+</div>

@@ -1,0 +1,188 @@
+<div class="page-container" >
+	<h3>Batch</h3>
+	<hr />
+	<ng-container *ngIf="loading" >
+		<img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+	</ng-container>
+	<ng-container *ngIf="!loading">
+		<div class="row mb-3">
+			<div class="col-md-3">
+				<div class="card-body shadow-sm">
+					<h5 class="card-title">Categoria</h5>
+					<h6 class="card-subtitle text-primary">{{batch.category}}</h6>
+				</div>
+			</div>	
+			<div class="col-md-3">
+				<div class="card-body shadow-sm">
+					<h5 class="card-title">Fecha</h5>
+					<h6 class="card-subtitle text-primary">{{batch.date}}</h6>
+				</div>
+			</div>	
+			<div class="col-md-3">
+				<div class="card-body shadow-sm">
+					<h5 class="card-title">Creado</h5>
+					<h6 class="card-subtitle text-primary">{{batch.createTimestamp | date:"dd/MM/yyyy HH:mm:ss"}}</h6>
+				</div>
+			</div>	
+			<div class="col-md-3">
+				<div class="card-body shadow-sm">
+					<h5 class="card-title">Estado</h5>
+					<h6 class="card-subtitle text-primary">{{batch.state}}</h6>
+				</div>
+			</div>		
+		</div>
+		<h3>Detalle</h3>
+		<hr />
+		<div class="row mb-3">
+			<div class="col-md-12">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item"><a class="nav-link" [ngClass]="{ 'active':activeTab=='general'}" (click)="activeTab='general'" id="general-tab" data-toggle="tab" href="#">General</a></li>
+					<li class="nav-item"><a class="nav-link" [ngClass]="{ 'active':activeTab=='customer'}" (click)="activeTab='customer'" id="customer-tab" data-toggle="tab" href="#">Customer</a></li>
+					<li class="nav-item"><a class="nav-link" [ngClass]="{ 'active':activeTab=='sales'}" (click)="activeTab='sales'" id="sales-tab" data-toggle="tab" href="#">Sales</a></li>
+					<li class="nav-item"><a class="nav-link" [ngClass]="{ 'active':activeTab=='event'}" (click)="activeTab='event'" id="event-tab" data-toggle="tab" href="#">Event</a></li>
+					<li class="nav-item"><a class="nav-link" [ngClass]="{ 'active':activeTab=='claim'}" (click)="activeTab='claim'" id="claim-tab" data-toggle="tab" href="#">Claim</a></li>
+					<li class="nav-item"><a class="nav-link" [ngClass]="{ 'active':activeTab=='seg'}" (click)="activeTab='seg'" id="seg-tab" data-toggle="tab" href="#">Seg</a></li>
+					<li class="nav-item"><a class="nav-link" [ngClass]="{ 'active':activeTab=='policy'}" (click)="activeTab='policy'" id="policy-tab" data-toggle="tab" href="#">Policy</a></li>
+					<li class="nav-item"><a class="nav-link" [ngClass]="{ 'active':activeTab=='case'}" (click)="activeTab='case'" id="case-tab" data-toggle="tab" href="#">Case</a></li>
+					<li class="nav-item"><a class="nav-link" [ngClass]="{ 'active':activeTab=='oe'}" (click)="activeTab='oe'" id="oe-tab" data-toggle="tab" href="#">OE</a></li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show" [ngClass]="{ 'active':activeTab=='general'}" id="general" role="tabpanel">
+						<div class="row mb-3">
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">journey</h5><h6 class="card-subtitle text-primary">{{det.journey}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">subJourney</h5><h6 class="card-subtitle text-primary">{{det.subJourney}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe</h5><h6 class="card-subtitle text-primary">{{det.oe}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">lineOfBusiness</h5><h6 class="card-subtitle text-primary">{{det.lineOfBusiness}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">branch</h5><h6 class="card-subtitle text-primary">{{det.branch}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">interactionPointID</h5><h6 class="card-subtitle text-primary">{{det.interactionPointID}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">integrationID</h5><h6 class="card-subtitle text-primary">{{det.integrationID}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">productID</h5><h6 class="card-subtitle text-primary">{{det.productID}}</h6></div></div>
+						</div>
+					</div>
+					<div class="tab-pane fade show" [ngClass]="{ 'active':activeTab=='customer'}" id="customer" role="tabpanel">
+						<div class="row mb-3">
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custID</h5><h6 class="card-subtitle text-primary">{{det.custID}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custFullname</h5><h6 class="card-subtitle text-primary">{{det.custFullname}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custSalutationLine</h5><h6 class="card-subtitle text-primary">{{det.custSalutationLine}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custeMailAddress</h5><h6 class="card-subtitle text-primary">{{det.custeMailAddress}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custPhone1</h5><h6 class="card-subtitle text-primary">{{det.custPhone1}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custInvitationAddress</h5><h6 class="card-subtitle text-primary">{{det.custInvitationAddress}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custLanguage</h5><h6 class="card-subtitle text-primary">{{det.custLanguage}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custName</h5><h6 class="card-subtitle text-primary">{{det.custName}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custSurname</h5><h6 class="card-subtitle text-primary">{{det.custSurname}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custTitle</h5><h6 class="card-subtitle text-primary">{{det.custTitle}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custGender</h5><h6 class="card-subtitle text-primary">{{det.custGender}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custPhone2</h5><h6 class="card-subtitle text-primary">{{det.custPhone2}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custPostcode</h5><h6 class="card-subtitle text-primary">{{det.custPostcode}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custCity</h5><h6 class="card-subtitle text-primary">{{det.custCity}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custCountry</h5><h6 class="card-subtitle text-primary">{{det.custCountry}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custYearOfBirth</h5><h6 class="card-subtitle text-primary">{{det.custYearOfBirth}}</h6></div></div>
+						</div>
+					</div>
+					<div class="tab-pane fade show" [ngClass]="{ 'active':activeTab=='sales'}" id="sales" role="tabpanel">
+						<div class="row mb-3">
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custSalesSalesChannel</h5><h6 class="card-subtitle text-primary">{{det.custSalesSalesChannel}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custSalesAgencyID</h5><h6 class="card-subtitle text-primary">{{det.custSalesAgencyID}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custSalesAgencyName</h5><h6 class="card-subtitle text-primary">{{det.custSalesAgencyName}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custSalesAgentID</h5><h6 class="card-subtitle text-primary">{{det.custSalesAgentID}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custSalesRegionID</h5><h6 class="card-subtitle text-primary">{{det.custSalesRegionID}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">custSalesRegionName</h5><h6 class="card-subtitle text-primary">{{det.custSalesRegionName}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">salesQuotationChannel</h5><h6 class="card-subtitle text-primary">{{det.salesQuotationChannel}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">salesQuotationID</h5><h6 class="card-subtitle text-primary">{{det.salesQuotationID}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">salesPurchaseChannel</h5><h6 class="card-subtitle text-primary">{{det.salesPurchaseChannel}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">salesPolicyID</h5><h6 class="card-subtitle text-primary">{{det.salesPolicyID}}</h6></div></div>
+						</div>
+					</div>
+					<div class="tab-pane fade show" [ngClass]="{ 'active':activeTab=='event'}" id="event" role="tabpanel">
+						<div class="row mb-3">
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">eventID</h5><h6 class="card-subtitle text-primary">{{det.eventID}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">eventDate</h5><h6 class="card-subtitle text-primary">{{det.eventDate  | date:"MM/dd/yyyy"}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">eventEmployeeID</h5><h6 class="card-subtitle text-primary">{{det.eventEmployeeID}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">eventEmployeeFullName</h5><h6 class="card-subtitle text-primary">{{det.eventEmployeeFullName}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">eventEmployeeDepartmentID</h5><h6 class="card-subtitle text-primary">{{det.eventEmployeeDepartmentID}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">eventEmployeeDepartmentName</h5><h6 class="card-subtitle text-primary">{{det.eventEmployeeDepartmentName}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">issueContactChannel</h5><h6 class="card-subtitle text-primary">{{det.issueContactChannel}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">issueRelatedJourney</h5><h6 class="card-subtitle text-primary">{{det.issueRelatedJourney}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">issueRelatedSubJourney</h5><h6 class="card-subtitle text-primary">{{det.issueRelatedSubJourney}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">issueContactCategory</h5><h6 class="card-subtitle text-primary">{{det.issueContactCategory}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">renewalProcess</h5><h6 class="card-subtitle text-primary">{{det.renewalProcess}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">renewalWinBackPolicy</h5><h6 class="card-subtitle text-primary">{{det.renewalWinBackPolicy}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">outboundDocument</h5><h6 class="card-subtitle text-primary">{{det.outboundDocument}}</h6></div></div>
+						</div>
+					</div>
+					<div class="tab-pane fade show" [ngClass]="{ 'active':activeTab=='claim'}" id="claim" role="tabpanel">
+						<div class="row mb-3">
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">claimID</h5><h6 class="card-subtitle text-primary">{{det.claimID}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">claimReportingChannel</h5><h6 class="card-subtitle text-primary">{{det.claimReportingChannel}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">claimContactChannel</h5><h6 class="card-subtitle text-primary">{{det.claimContactChannel}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">claimAssessmentbyPartner</h5><h6 class="card-subtitle text-primary">{{det.claimAssessmentbyPartner}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">claimRepairByPartner</h5><h6 class="card-subtitle text-primary">{{det.claimRepairByPartner}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">claimTypeofClaim</h5><h6 class="card-subtitle text-primary">{{det.claimTypeofClaim}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">claimReportingDate</h5><h6 class="card-subtitle text-primary">{{det.claimReportingDate | date:"MM/dd/yyyy" }}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">claimSettlementDate</h5><h6 class="card-subtitle text-primary">{{det.claimSettlementDate | date:"MM/dd/yyyy" }}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">claimSettlementOutcomeCat</h5><h6 class="card-subtitle text-primary">{{det.claimSettlementOutcomeCat}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">claimSettlementAmount</h5><h6 class="card-subtitle text-primary">{{det.claimSettlementAmount}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">claimHandlingDuration</h5><h6 class="card-subtitle text-primary">{{det.claimHandlingDuration}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">claimHandlingDurationCat</h5><h6 class="card-subtitle text-primary">{{det.claimHandlingDurationCat}}</h6></div></div>
+						</div>
+					</div>
+					<div class="tab-pane fade show" [ngClass]="{ 'active':activeTab=='seg'}" id="seg" role="tabpanel">
+						<div class="row mb-3">
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">segCustRelation</h5><h6 class="card-subtitle text-primary">{{det.segCustRelation}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">segCustomerTenure</h5><h6 class="card-subtitle text-primary">{{det.segCustomerTenure}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">segCustomerTenureCat</h5><h6 class="card-subtitle text-primary">{{det.segCustomerTenureCat}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">segActivePolicies</h5><h6 class="card-subtitle text-primary">{{det.segActivePolicies}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">segActivePoliciesCat</h5><h6 class="card-subtitle text-primary">{{det.segActivePoliciesCat}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">segCustSegment</h5><h6 class="card-subtitle text-primary">{{det.segCustSegment}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">segCustValue</h5><h6 class="card-subtitle text-primary">{{det.segCustValue}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">segCRRestructuringFlag</h5><h6 class="card-subtitle text-primary">{{det.segCRRestructuringFlag}}</h6></div></div>
+						</div>
+					</div>
+					<div class="tab-pane fade show" [ngClass]="{ 'active':activeTab=='policy'}" id="policy" role="tabpanel">
+						<div class="row mb-3">
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">policyID</h5><h6 class="card-subtitle text-primary">{{det.policyID}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">policyInitialDate</h5><h6 class="card-subtitle text-primary">{{det.policyInitialDate | date:"MM/dd/yyyy" }}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">policyLastRenewalDate</h5><h6 class="card-subtitle text-primary">{{det.policyLastRenewalDate | date:"MM/dd/yyyy"}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">policyProductType</h5><h6 class="card-subtitle text-primary">{{det.policyProductType}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">policyPoductSubType</h5><h6 class="card-subtitle text-primary">{{det.policyPoductSubType}}</h6></div></div>
+						</div>
+					</div>
+					<div class="tab-pane fade show" [ngClass]="{ 'active':activeTab=='case'}" id="case" role="tabpanel">
+						<div class="row mb-3">
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">caseOwner</h5><h6 class="card-subtitle text-primary">{{det.caseOwner}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">caseEscalation1</h5><h6 class="card-subtitle text-primary">{{det.caseEscalation1}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">caseFAW</h5><h6 class="card-subtitle text-primary">{{det.caseFAW}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">caseLAW</h5><h6 class="card-subtitle text-primary">{{det.caseLAW}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">caseEscalation2</h5><h6 class="card-subtitle text-primary">{{det.caseEscalation2}}</h6></div></div>
+						</div>
+					</div>
+					<div class="tab-pane fade show" [ngClass]="{ 'active':activeTab=='oe'}" id="oe" role="tabpanel">
+						<div class="row mb-3">
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe1</h5><h6 class="card-subtitle text-primary">{{det.oe1}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe2</h5><h6 class="card-subtitle text-primary">{{det.oe2}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe3</h5><h6 class="card-subtitle text-primary">{{det.oe3}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe4</h5><h6 class="card-subtitle text-primary">{{det.oe4}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe5</h5><h6 class="card-subtitle text-primary">{{det.oe5}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe6</h5><h6 class="card-subtitle text-primary">{{det.oe6}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe7</h5><h6 class="card-subtitle text-primary">{{det.oe7}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe8</h5><h6 class="card-subtitle text-primary">{{det.oe8}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe9</h5><h6 class="card-subtitle text-primary">{{det.oe9}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe10</h5><h6 class="card-subtitle text-primary">{{det.oe10}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe11</h5><h6 class="card-subtitle text-primary">{{det.oe11}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe12</h5><h6 class="card-subtitle text-primary">{{det.oe12}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe13</h5><h6 class="card-subtitle text-primary">{{det.oe13}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe14</h5><h6 class="card-subtitle text-primary">{{det.oe14}}</h6></div></div>
+							<div class="col-md-3 wrap"><div class="card-body shadow-sm"><h5 class="card-title">oe15</h5><h6 class="card-subtitle text-primary">{{det.oe15}}</h6></div></div>						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ng-container>
+	<div class="row mb-3">
+		<div class="col-md-12 text-right">
+			<button type="button" class="btn btn-secondary mr-2" onclick="window.history.back()">Volver</button>
+		</div>
+	</div>
+</div>
+

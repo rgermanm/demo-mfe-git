@@ -1,0 +1,22 @@
+.header-bg{
+    background-color: #006192 !important;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+    color: aliceblue;
+}
+
+.navbar-dark .navbar-toggler{
+    color: aliceblue;
+}
+
+.mm-navbar{
+    margin-left: .5em;
+    border-left: 1px solid rgba(255,255,255,.4);
+    padding-left: 1em;
+}
+
+.right-dropdown{
+    right: 0;
+    left: unset;
+}

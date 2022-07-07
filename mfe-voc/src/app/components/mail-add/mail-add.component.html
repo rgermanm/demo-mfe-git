@@ -1,0 +1,122 @@
+<div class="page-container">
+    <div class="d-flex" style="justify-content: space-between; margin-bottom: 10px;">
+        <h3>Mails</h3>
+        <div class="d-flex">
+            <button type="button" class="btn  btn-primary" (click)="save()"
+                style="margin-right: 15px;">Guardar</button>
+            <button type="button" class="btn btn-secondary" onclick="window.history.back()">Cancelar</button>
+        </div>
+    </div>
+
+    <hr />
+    <div class="row" style=" width:100%;">
+        <div class="col-md-3">
+            <form [formGroup]="mailForm" (ngSubmit)="save()">
+                <div>
+                    <div>
+                        <mat-form-field class="form-group col-md-8">
+                            <mat-label>Journey</mat-label>
+                            <mat-select formControlName="journey">
+                                <mat-option *ngFor="let row of jouneys" value="{{row}}">{{row}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field class="form-group col-md-8">
+                            <mat-label>SubJourney</mat-label>
+                            <mat-select formControlName="subjourney">
+                                <mat-option *ngFor="let row of subJouneys" value="{{row}}">{{row}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field class="form-group col-md-8">
+                            <mat-label>Branch</mat-label>
+                            <mat-select formControlName="branch">
+                                <mat-option *ngFor="let row of branches" value="{{row}}">{{row}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field class="form-group col-md-8">
+                            <input matInput placeholder="Interaction Point ID" formControlName="interactionPoint">
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field class="form-group col-md-8">
+                            <input matInput placeholder="Mail" #inputMail>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <button type="button" class="btn btn-primary col-md-8" (click)="addToPendingList()">Agregar</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+
+        <div class="col-md-9 row">
+
+            <div class="col-md-2">
+                <h2 class="divTitle">Mails en espera</h2>
+                <div cdkDropList #mailsList="cdkDropList" [cdkDropListData]="mailaddList" class="example-list"
+                    (cdkDropListDropped)="drop($event)"
+                    [cdkDropListConnectedTo]="[CaseOwnerList,CaseFawList,CaseLawList,CaseEscalation1List,CaseEscalation2List]">
+                    <div class="example-box" *ngFor="let item of mailaddList" cdkDrag>{{item}}</div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <h2 class="divTitle"> Case Owner</h2>
+                <div cdkDropList #CaseOwnerList="cdkDropList" [cdkDropListData]="caseOwnerList" class="example-list"
+                    (cdkDropListDropped)="drop($event)"
+                    [cdkDropListConnectedTo]="[CaseOwnerList,CaseFawList,CaseLawList,CaseEscalation1List,CaseEscalation2List,mailsList]">
+                    <div class="example-box" *ngFor="let item of caseOwnerList" cdkDrag>{{item}}</div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <h2 class="divTitle">Case Faw</h2>
+                <div cdkDropList #CaseFawList="cdkDropList" [cdkDropListData]="caseFawList" class="example-list"
+                    (cdkDropListDropped)="drop($event)"
+                    [cdkDropListConnectedTo]="[CaseOwnerList,CaseFawList,CaseLawList,CaseEscalation1List,CaseEscalation2List,mailsList]">
+                    <div class="example-box" *ngFor="let item of caseFawList" cdkDrag>{{item}}</div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <h2 class="divTitle">Case Law</h2>
+                <div cdkDropList #CaseLawList="cdkDropList" [cdkDropListData]="caseLawList" class="example-list"
+                    (cdkDropListDropped)="drop($event)"
+                    [cdkDropListConnectedTo]="[CaseOwnerList,CaseFawList,CaseLawList,CaseEscalation1List,CaseEscalation2List,mailsList]">
+                    <div class="example-box" *ngFor="let item of caseLawList" cdkDrag>{{item}}</div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <h2 class="divTitle">Case Escalation 1</h2>
+                <div cdkDropList #CaseEscalation1List="cdkDropList" [cdkDropListData]="caseEscalation1List"
+                    class="example-list" (cdkDropListDropped)="drop($event)"
+                    [cdkDropListConnectedTo]="[CaseOwnerList,CaseFawList,CaseLawList,CaseEscalation1List,CaseEscalation2List,mailsList]">
+                    <div class="example-box" *ngFor="let item of caseEscalation1List" cdkDrag>{{item}}</div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <h2 class="divTitle">Case Escalation 2</h2>
+                <div cdkDropList #CaseEscalation2List="cdkDropList" [cdkDropListData]="caseEscalation2List"
+                    class="example-list" (cdkDropListDropped)="drop($event)"
+                    [cdkDropListConnectedTo]="[mailsList,CaseOwnerList,CaseFawList,CaseLawList,CaseEscalation1List,CaseEscalation2List]">
+                    <div class="example-box" *ngFor="let item of caseEscalation2List" cdkDrag>{{item}}</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

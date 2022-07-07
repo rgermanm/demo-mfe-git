@@ -1,0 +1,86 @@
+<div class="page-container">
+	<h3>Tareas Programadas</h3>
+	<hr />
+	<div class="d-flex">
+		<div class="flex-grow-0">
+			<mat-form-field><input matInput placeholder="Buscar" value="{{tableParams.filter}}"
+					(change)="filter($event)"></mat-form-field>
+		</div>
+		<div class="flex-grow-0 ml-3">
+			<img *ngIf="loading"
+				src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+		</div>
+		<div class="flex-grow-1"></div>
+		<div class="flex-grow-0 ml-3">
+			<button type="button" class="btn btn-secondary btn-sm mr-2" (click)="refresh()"><i
+					class="icon ion-md-refresh"></i> Actualizar</button>
+		</div>
+		<div class="flex-grow-0 ml-3">
+			<button type="button" class="btn btn-success btn-sm mr-2" routerLink="new"><i class="icon ion-md-add"></i>
+				Agregar</button>
+		</div>
+	</div>
+	<table class="table table-hover">
+		<thead class="thead">
+			<tr>
+				<th scope="col" (click)="changeSort('code')" style="cursor: pointer;">Codigo</th>
+				<th scope="col" (click)="changeSort('description')" style="cursor: pointer;">Descripcion</th>
+				<th scope="col" (click)="changeSort('enabled')" style="cursor: pointer;">Habilitado</th>
+				<th scope="col" (click)="changeSort('jobClassName')" style="cursor: pointer;">Tipo</th>
+				<th scope="col" (click)="changeSort('params')" style="cursor: pointer;">Parametros</th>
+				<th scope="col" (click)="changeSort('cronExpression')" style="cursor: pointer;">Cron</th>
+				<th scope="col" (click)="changeSort('running')" style="cursor: pointer;">En Ejecucion</th>
+				<th scope="col">Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngIf="tableData.length==0">
+				<td colspan="8" class="text-center">No se encontraron resultados</td>
+			</tr>
+			<tr *ngFor="let row of tableData">
+				<td>{{row.code}}</td>
+				<td>{{row.description}}</td>
+				<td align="center">{{row.enabled?'Si':'No'}}</td>
+				<td>{{row.jobTypeCode}} - {{row.jobTypeDescription}}</td>
+				<td>{{row.params?paramsFormatter(row.params):''}}</td>
+				<td>{{row.cronExpression}}</td>
+				<td align="center">{{row.running?'Si':'No'}}</td>
+				<td align="center">
+					<div>
+						<button type="button" class="btn btn-outline-primary btn-sm mr-2" routerLink="{{row.oid}}"
+							data-toggle="tooltip" data-placement="bottom" title="Editar"><i
+								class="icon ion-md-create"></i></button>
+						<button type="button" class="btn btn-outline-danger btn-sm mr-2" (click)="delete(row)"
+							data-toggle="tooltip" data-placement="bottom" title="Eliminar"><i
+								class="icon ion-md-trash"></i></button>
+						<button *ngIf="row.enabled" type="button" class="btn btn-outline-secondary btn-sm mr-2"
+							(click)="disable(row)" data-toggle="tooltip" data-placement="bottom" title="Deshabilitar"><i
+								class="icon ion-md-close"></i></button>
+						<button *ngIf="!row.enabled" type="button" class="btn btn-outline-secondary btn-sm mr-2"
+							(click)="enable(row)" data-toggle="tooltip" data-placement="bottom" title="habilitar"><i
+								class="icon ion-md-checkmark"></i></button>
+						<button type="button" class="btn btn-outline-secondary btn-sm mr-2" (click)="execute(row)"
+							data-toggle="tooltip" data-placement="bottom" title="Ejecutar"><i
+								class="icon ion-md-play"></i></button>
+						<button type="button" class="btn btn-outline-secondary btn-sm mr-2"
+							(click)="openModal( row.code )" data-toggle="tooltip" data-placement="bottom"
+							title="Editar"><i class="icon ion-md-create"></i></button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<app-paginator [size]="tableParams.size" [total]="total" [page]="tableParams.page" (changePage)="changePage($event)"
+		(changeSize)="changeSizePerPage($event)"></app-paginator>
+</div>
+
+
+
+<ng-template #template >
+	<div>
+		<div *ngFor="let jou of listadoJourneys" class="margin" >
+			<nx-switcher *ngIf="editedRowCode === 'POP_SINI'" [checked]="jou.isAvailablePopulate" labelSize="small"(checkedChange)="editJourney( jou , $event )">{{jou.code}}</nx-switcher>
+			<nx-switcher *ngIf="editedRowCode !== 'POP_SINI'" [checked]="jou.isAvailableGenerate" labelSize="small" (checkedChange)="editJourney( jou , $event )">{{jou.code}}</nx-switcher>
+		</div>
+	</div>
+</ng-template>

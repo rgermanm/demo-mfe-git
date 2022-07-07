@@ -1,0 +1,45 @@
+<div class="page-container">
+	<div class="d-flex" style="justify-content: space-between; margin-bottom: 10px;">
+		<h3>Mails</h3>
+		<button type="button" class="btn btn-outline-primary btn-sm mr-2"   data-placement="bottom" title="Agregar" routerLink="new">Agregar</button>
+	</div>
+
+	
+    <hr/>
+    
+
+    <table class="table table-hover">
+		<thead class="thead">
+			<tr>
+				<th scope="col"  (click)="changeSort('journey')"  style="cursor: pointer;">Journey</th>
+				<th scope="col"  (click)="changeSort('subJourney')" style="cursor: pointer;">SubJourney</th>
+				<th scope="col"  (click)="changeSort('branch')" style="cursor: pointer;">Branch</th>
+				<th scope="col"  (click)="changeSort('interactionPointID')" style="cursor: pointer;">Interaction Point Id</th>
+				<th scope="col">Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngIf="mailsConfigurations.length==0">
+				<td colspan="5" class="text-center">No se encontraron resultados</td>
+			</tr> 
+			<tr *ngFor="let mailConfiguration of mailsConfigurations">
+				<td>{{mailConfiguration.journey}}</td>
+				<td>{{mailConfiguration.subJourney}}</td>
+				<td>{{mailConfiguration.branch}}</td>
+				<td>{{mailConfiguration.interactionPointID}}</td>
+				<td>
+					<div>
+						<button type="button" class="btn btn-outline-primary btn-sm mr-2"   routerLink="{{mailConfiguration.oid}}"  data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="icon ion-md-create"></i></button>
+						<button type="button" class="btn btn-outline-danger btn-sm mr-2"   data-toggle="tooltip" data-placement="bottom" title="Eliminar" (click)="delete(mailConfiguration)"><i class="icon ion-md-trash"></i></button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<app-paginator [size]="tableParams.size" [total]="total"
+	[page]="tableParams.page" (changePage)="changePage($event)"
+	(changeSize)="changeSizePerPage($event)"></app-paginator>
+
+      
+</div>

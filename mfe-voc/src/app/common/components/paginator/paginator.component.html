@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-between p-2">
+	<nav>
+		<ul class="pagination">
+			<li [class]="(page>1)?'page-item':'page-item disabled'"><button class="page-link" (click)="notifyChangePage(page-1)"><span>&laquo;</span></button></li>
+			<li class="page-item" *ngIf="page>3"><button class="page-link" (click)="notifyChangePage(1)">1</button></li>
+			<li class="page-item disabled" *ngIf="page>4"><button class="page-link">...</button></li>
+			<li class="page-item" *ngIf="page>2"><button class="page-link" (click)="notifyChangePage(page-2)">{{page-2}}</button></li>
+			<li class="page-item" *ngIf="page>1"><button class="page-link" (click)="notifyChangePage(page-1)">{{page-1}}</button></li>
+			<li class="page-item active"><button class="page-link">{{page}}</button></li>
+			<li class="page-item" *ngIf="page<maxPages"><button class="page-link" (click)="notifyChangePage(page+1)">{{page+1}}</button></li>
+			<li class="page-item" *ngIf="page<maxPages-1"><button class="page-link" (click)="notifyChangePage(page+2)">{{page+2}}</button></li>
+			<li class="page-item disabled" *ngIf="page<maxPages-3"><button class="page-link">...</button></li>
+			<li class="page-item" *ngIf="page<maxPages-2"><button class="page-link" (click)="notifyChangePage(maxPages)">{{maxPages}}</button></li>
+			<li [class]="(page<maxPages)?'page-item':'page-item disabled'"><button class="page-link"  (click)="notifyChangePage(page+1)"><span>&raquo;</span></button></li>
+		</ul>
+	</nav>
+	<div class="text-right">
+		<mat-form-field class="w-25" > 
+			<mat-select (selectionChange)="notifyChangeSizePerPage($event)" value="{{size}}">
+				<mat-option value="5" >5</mat-option>
+				<mat-option value="10" >10</mat-option>
+				<mat-option value="25" >25</mat-option>
+				<mat-option value="50" >50</mat-option>
+			</mat-select>
+		</mat-form-field>	
+	</div>
+</div>

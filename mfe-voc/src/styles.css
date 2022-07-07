@@ -1,0 +1,93 @@
+@import "@allianz/ngx-ndbx/themes/expert.css";
+@import "@allianz/ndbx-styles/dist/patternlab-minimal.css";
+@import "@allianz/ngx-ndbx/css/utilities.css";
+@import "@angular/cdk/overlay-prebuilt.css";
+@import "@angular/cdk/a11y-prebuilt.css";
+
+/* You can add global styles to this file, and also import other style files */
+html{
+    font-size: inherit !important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body{
+    background-color: #f5f5f5 !important;
+}
+
+.page-container{
+    background: white;
+    padding: 1em;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px #ddd;
+}
+
+.page-title{
+    font-size: 17px;
+    font-size: 1.25rem;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"
+}
+
+
+
+
+@font-face {
+    font-family: "AllianzNeoL" ;
+    src: url("assets/fonts/AllianzNeo-Light.eot");
+    src: url("assets/fonts/AllianzNeo-Light.eot?#iefix")
+        format("embedded-opentype"),
+      url("assets/fonts/AllianzNeo-Light.woff2") format("woff2"),
+      url("assets/fonts/AllianzNeo-Light.woff") format("woff"),
+      url("assets/fonts/AllianzNeo-Light.ttf") format("truetype"),
+      url("assets/fonts/AllianzNeo-Light.svg#AllianzNeo-Light") format("svg");
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "AllianzNeoR";
+    src: url("assets/fonts/AllianzNeo-Regular.eot");
+    src: url("assets/fonts/AllianzNeo-Regular.eot?#iefix")
+        format("embedded-opentype"),
+      url("assets/fonts/AllianzNeo-Regular.woff2") format("woff2"),
+      url("assets/fonts/AllianzNeo-Regular.woff") format("woff"),
+      url("assets/fonts/AllianzNeo-Regular.ttf") format("truetype"),
+      url("assets/fonts/AllianzNeo-Regular.svg#AllianzNeo-Regular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "AllianzNeoB";
+    src: url("assets/fonts/AllianzNeo-Bold.eot");
+    src: url("assets/fonts/AllianzNeo-Bold.eot?#iefix")
+        format("embedded-opentype"),
+      url("assets/fonts/AllianzNeo-Bold.woff2") format("woff2"),
+      url("assets/fonts/AllianzNeo-Bold.woff") format("woff"),
+      url("assets/fonts/AllianzNeo-Bold.ttf") format("truetype"),
+      url("assets/fonts/AllianzNeo-Bold.svg#AllianzNeo-Bold") format("svg");
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "AllianzNeoSB";
+    src: url("assets/fonts/AllianzNeo-SemiBold.eot");
+    src: url("assets/fonts/AllianzNeo-SemiBold.eot?#iefix")
+        format("embedded-opentype"),
+      url("assets/fonts/AllianzNeo-SemiBold.woff2") format("woff2"),
+      url("assets/fonts/AllianzNeo-SemiBold.woff") format("woff"),
+      url("assets/fonts/AllianzNeo-SemiBold.ttf") format("truetype"),
+      url("assets/fonts/AllianzNeo-SemiBold.svg#AllianzNeo-SemiBold")
+        format("svg");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+
+  .cdk-overlay-pane{
+    width: auto !important;
+  }

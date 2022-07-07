@@ -1,0 +1,21 @@
+<button id="alertModalButton" type="button" [hidden]="true" data-backdrop="static" data-keyboard="false" class="btn btn-primary" data-toggle="modal" data-target="#alertModal">
+</button>
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>        
+      </div>
+      <div class="modal-body">
+        {{text?text:''}}
+      </div>
+      <div *ngIf="type=='confirm'" class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="message.noFn()">No</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="message.yesFn()">Si</button>
+      </div>
+      <div *ngIf="type=='alert'" class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="message.noFn()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

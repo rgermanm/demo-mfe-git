@@ -1,0 +1,43 @@
+<div class="page-container">
+	<h3>Propiedades</h3>
+	<hr />
+	<div class="d-flex">
+		<div class="flex-grow-0">
+			<mat-form-field ><input matInput placeholder="Buscar" value="{{tableParams.filter}}" (change)="filter($event)"></mat-form-field>
+		</div>
+		<div class="flex-grow-0 ml-3">
+			<img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+		</div>
+		<div class="flex-grow-1"></div>
+	</div>
+	<table class="table table-hover">
+		<thead class="thead">
+			<tr>
+				<th scope="col" (click)="changeSort('key')" style="cursor: pointer;">Clave</th>
+				<th scope="col" (click)="changeSort('description')" style="cursor: pointer;">Descripcion</th>
+				<th scope="col" (click)="changeSort('value')" style="cursor: pointer;">Valor</th>
+				<th scope="col" (click)="changeSort('editable')" style="cursor: pointer;">Editable</th>
+				<th scope="col">Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngIf="tableData.length==0">
+				<td colspan="5" class="text-center">No se encontraron resultados</td>
+			</tr>
+			<tr *ngFor="let row of tableData">
+				<td>{{row.key}}</td>
+				<td>{{row.description}}</td>
+				<td>{{row.value}}</td>
+				<td align="center">{{row.editable?'Si':'No'}}</td>
+				<td align="center">
+					<div>
+						<button *ngIf="row.editable" type="button" class="btn btn-outline-primary btn-sm mr-2" routerLink="{{row.oid}}"  data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="icon ion-md-create"></i></button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<app-paginator [size]="tableParams.size" [total]="total"
+		[page]="tableParams.page" (changePage)="changePage($event)"
+		(changeSize)="changeSizePerPage($event)"></app-paginator>
+</div>

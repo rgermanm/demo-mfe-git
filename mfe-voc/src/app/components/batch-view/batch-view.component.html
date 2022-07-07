@@ -1,0 +1,101 @@
+<div class="page-container" >
+	<h3>Batch</h3>
+	<hr />
+	<img *ngIf="loadingTO" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+	<ng-container *ngIf="!loadingTO">
+		<div class="row mb-3">
+			<div class="col-md-3">
+				<div class="card-body shadow-sm">
+					<h5 class="card-title">Categoria</h5>
+					<h6 class="card-subtitle text-primary">{{to.category}}</h6>
+				</div>
+			</div>	
+			<div class="col-md-3">
+				<div class="card-body shadow-sm">
+					<h5 class="card-title">Creado</h5>
+					<h6 class="card-subtitle text-primary">{{to.createTimestamp | date:"dd/MM/yyyy HH:mm:ss"}}</h6>
+				</div>
+			</div>	
+			<div class="col-md-3">
+				<div class="card-body shadow-sm">
+					<h5 class="card-title">Fecha</h5>
+					<h6 class="card-subtitle text-primary">{{to.date}}</h6>
+				</div>
+			</div>		
+			<div class="col-md-3">
+				<div class="card-body shadow-sm">
+					<h5 class="card-title">Estado</h5>
+					<h6 class="card-subtitle text-primary">{{to.state}}</h6>
+				</div>
+			</div>
+		</div>	
+		<div class="row mb-3">
+			<div class="col-md-12">
+				<div class="card-body shadow-sm">
+					<h5 class="card-title">Error</h5>
+					<h6 class="card-subtitle text-primary">{{to.error?to.error:'-'}}</h6>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="col-md-12 text-right">
+				<button *ngIf="showToPending" type="button" class="btn btn-outline-primary btn-sm mr-2" (click)="toPending()"  data-toggle="tooltip" data-placement="bottom" title="Pasar a Pendiente">Pasar a Pendiente</button>
+				<button *ngIf="showToAbort" type="button" class="btn btn-outline-primary btn-sm mr-2" (click)="toAbort()"  data-toggle="tooltip" data-placement="bottom" title="Pasar a Abortado">Pasar a Abortado</button>
+				<button *ngIf="showDelete" type="button" class="btn btn-outline-danger btn-sm mr-2" (click)="delete()"  data-toggle="tooltip" data-placement="bottom" title="Eliminar">Eliminar</button>
+			</div>		
+		</div>
+	</ng-container>
+	<h3>Detalle</h3>
+	<hr />
+	<div class="d-flex">
+		<div class="flex-grow-0 mr-3">
+			<mat-form-field ><input matInput placeholder="Buscar" value="{{tableParams.filter}}" (change)="filter($event)"></mat-form-field>
+		</div>
+		<div class="flex-grow-0 ml-3">
+			<img *ngIf="loadingDetails" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+		</div>
+		<div class="flex-grow-1"></div>
+	</div>
+	<table class="table table-hover">
+		<thead class="thead">
+			<tr>
+				<th scope="col" (click)="changeSort('custFullname')" style="cursor: pointer;">Customer Name</th>
+				<th scope="col" (click)="changeSort('custCity')" style="cursor: pointer;">Customer City</th>
+				<th scope="col" (click)="changeSort('eventEmployeeFullName')" style="cursor: pointer;">Employee Name</th>
+				<th scope="col" (click)="changeSort('eventEmployeeDepartmentName')" style="cursor: pointer;">Departament</th>
+				<th scope="col" (click)="changeSort('custSalesAgencyName')" style="cursor: pointer;">Agency Name</th>
+				<th scope="col" (click)="changeSort('custSalesAgencyID')" style="cursor: pointer;">Agency Id</th>
+				<th scope="col" (click)="changeSort('custSalesRegionName')" style="cursor: pointer;">Region</th>
+				<th scope="col">Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngIf="tableData.length==0">
+				<td colspan="8" class="text-center">No se encontraron resultados</td>
+			</tr>
+			<tr *ngFor="let row of tableData">
+				<td>{{row.custFullname}}</td>
+				<td>{{row.custCity}}</td>
+				<td>{{row.eventEmployeeFullName}}</td>
+				<td>{{row.eventEmployeeDepartmentName}}</td>
+				<td>{{row.custSalesAgencyName}}</td>
+				<td>{{row.custSalesAgencyID}}</td>
+				<td>{{row.custSalesRegionName}}</td>
+				<td align="center">
+					<div>
+						<button type="button" class="btn btn-outline-primary btn-sm mr-2" routerLink="{{row.oid}}"  data-toggle="tooltip" data-placement="bottom" title="Ver"><i class="icon ion-md-eye"></i></button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<app-paginator [size]="tableParams.size" [total]="total"
+		[page]="tableParams.page" (changePage)="changePage($event)"
+		(changeSize)="changeSizePerPage($event)"></app-paginator>
+	<div class="row mb-3">
+		<div class="col-md-12 text-right">
+			<button type="button" class="btn btn-secondary mr-2" onclick="window.history.back()">Volver</button>
+		</div>
+	</div>
+
+</div>
