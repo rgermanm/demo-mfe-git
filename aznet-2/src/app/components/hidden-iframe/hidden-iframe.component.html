@@ -1,0 +1,37 @@
+<div class="app-container-b">
+        <div class="col-12 p-2" *ngIf="breadcrumb">
+                <span *ngIf="breadcrumb.lvl1Name" class="p-1 text-secondary">{{breadcrumb.lvl1Name | titlecase}}<span
+                                class="p-1"> /</span> </span>
+                <!-- <fa-icon [icon]="['fas', 'angle-right']"></fa-icon> -->
+                <span *ngIf="breadcrumb.lvl2Name" class="p-1 text-secondary">{{breadcrumb.lvl2Name | titlecase }}<span
+                                class="p-1"> /</span> </span>
+                <span *ngIf="breadcrumb.lvl3Name" class="p-1 text-secondary">{{breadcrumb.lvl3Name | titlecase}} </span>
+                <a class="p-1 text-secondary" (click)="navigate(clickedObject)" style="cursor:pointer"><span
+                                class="p-1"> /</span> <strong> {{  breadcrumb.lvl4Name | titlecase}}</strong> </a>
+        </div>
+        <div class="row d-flex  p-3 padding" *ngIf="origenMenuDesktop">
+
+                <div class="col-lg-3  d-flex align-items-end mg-bottom">
+                        <span *ngIf="!esFavorito" class="star-border" (click)="agregarFavorito()"
+                                style="cursor:pointer"></span>
+                        <span *ngIf="esFavorito" class="btn-star"></span>
+                        <span [ngClass]="{'cursor': !esFavorito,'cursor-context' : esFavorito }"
+                                (click)="clickHandler()"> {{(esFavorito) ? "Agregado" : "Agregar"}} a Favoritos</span>
+                </div>
+
+                <div class="col-lg-9 d-flex justify-content-end  align-items-end " *ngIf="menuLvl5">
+                        <button *ngFor="let menu of menuLvl5" class="btn btn-outline-primary btn-sm ml-3 "
+                                (click)="navigate(menu)">{{menu.descNombreMenu}}</button>
+                        <!-- <a class="ml-3 lbl-blue-light underline" *ngFor="let menu of menuLvl5" (click)="iframeAction(menu)"
+                        style="cursor:pointer;">{{menu.descNombreMenu}}</a>
+                <button class="btn btn-outline-primary btn-sm ml-3 "
+                        (click)="iframeAction(menuLvl4)">{{menuLvl4.descNombreMenu}}</button> -->
+
+                        <!-- (click)="linkEvent()" -->
+                </div>
+
+        </div>
+
+        <app-iframe-container #aznetIframe></app-iframe-container>
+
+</div>

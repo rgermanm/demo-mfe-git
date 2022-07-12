@@ -1,0 +1,181 @@
+/* FUENTES ALLIANZ */
+
+@font-face {
+    font-family: 'AllianzNeoL';
+    src: url('fonts/AllianzNeo-Light.eot');
+    src: url('fonts/AllianzNeo-Light.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AllianzNeo-Light.woff2') format('woff2'),
+        url('fonts/AllianzNeo-Light.woff') format('woff'),
+        url('fonts/AllianzNeo-Light.ttf') format('truetype'),
+        url('fonts/AllianzNeo-Light.svg#AllianzNeo-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AllianzNeoR';
+    src: url('fonts/AllianzNeo-Regular.eot');
+    src: url('fonts/AllianzNeo-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AllianzNeo-Regular.woff2') format('woff2'),
+        url('fonts/AllianzNeo-Regular.woff') format('woff'),
+        url('fonts/AllianzNeo-Regular.ttf') format('truetype'),
+        url('fonts/AllianzNeo-Regular.svg#AllianzNeo-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AllianzNeoB';
+    src: url('fonts/AllianzNeo-Bold.eot');
+    src: url('fonts/AllianzNeo-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AllianzNeo-Bold.woff2') format('woff2'),
+        url('fonts/AllianzNeo-Bold.woff') format('woff'),
+        url('fonts/AllianzNeo-Bold.ttf') format('truetype'),
+        url('fonts/AllianzNeo-Bold.svg#AllianzNeo-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AllianzNeoSB';
+    src: url('fonts/AllianzNeo-SemiBold.eot');
+    src: url('fonts/AllianzNeo-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/AllianzNeo-SemiBold.woff2') format('woff2'),
+        url('fonts/AllianzNeo-SemiBold.woff') format('woff'),
+        url('fonts/AllianzNeo-SemiBold.ttf') format('truetype'),
+        url('fonts/AllianzNeo-SemiBold.svg#AllianzNeo-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+
+.modal.show .modal-dialog{
+     top: 105px !important;
+}
+body {
+    font-family: "AllianzNeoR" !important;
+}
+
+.modal-backdrop.show {
+    opacity: 0.69;
+}
+
+a {
+    color: #007AB3;
+}
+
+a:hover {
+    color: #075994;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.btn {
+    box-shadow: none !important;
+}
+
+@media (max-width: 576px) {
+    .btn {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: 1rem;
+    }
+  }
+
+.custom-file-control, .form-control, .is-focused .custom-file-control, .is-focused .form-control {
+    background-image: linear-gradient(0deg,#007ab3 2px,rgba(0,150,136,0) 0),linear-gradient(0deg,rgba(0,0,0,.26) 1px,transparent 0);
+}
+
+/**/
+
+[class*=" bmd-label"], [class^=bmd-label] {
+    color: rgba(0,0,0,.69);
+}
+
+.is-focused [class*=" bmd-label"], .is-focused [class^=bmd-label]{
+    color: #007AB3;
+}
+
+/**/
+
+.navbar {
+    box-shadow: none;
+}
+
+/* - - - - - CUSTOM CLASSES  - - - - - */
+
+/* - - - - - COLORS  - - - - - */
+
+.bg-blue-light {background-color:#007AB3}
+.bg-blue-dark {background-color:#006092}
+.bg-grey-dark {background-color:#414141}
+.bg-clouds-light {background-color:#FCFCFC}
+.bg-silver-light {background-color:#EEEEEE}
+.bg-silver-dark {background-color:#CCCCCC}
+.bg-clouds-dark {background-color:#F5F3ED}
+.bg-ice {background-color:#F0F8F9}
+.bg-purple {background-color:#6804CC}
+.bg-red {background-color:#CC3333}
+.bg-ligh-blue {background-color:#3399FF}
+.bg-yellow {background-color:#FF9900}
+.bg-turquoise {background-color:#00CC99}
+.bg-grey-light {background-color:#666666}
+
+.lbl-blue-light {color:#007AB3}
+.lbl-blue-dark {color:#006092}
+.lbl-grey-dark {color:#414141}
+.lbl-clouds-light {color:#FCFCFC}
+.lbl-silver-light {color:#EEEEEE}
+.lbl-silver-dark {color:#CCCCCC}
+.lbl-clouds-dark {color:#F5F3ED}
+.lbl-ice {color:#F0F8F9}
+.lbl-purple {color:#6804CC}
+.lbl-red {color:#CC3333}
+.lbl-ligh-blue {color:#3399FF}
+.lbl-yellow {color:#FF9900}
+.lbl-turquoise {color:#00CC99}
+.lbl-grey-light {color:#666666}
+
+/* - - - - - - - - - - - - - - */
+
+.btn-allianz {
+    background-color: #007AB3;
+    border-color: #007AB3;
+    color: #fff;
+}
+
+.btn-allianz:hover {
+    background-color: #075994;
+    border-color: #075994;
+    color: #fff;
+}
+
+.btn-allianz:active {
+    background-color: #075994;
+    border-color: #075994;
+    color: #fff;
+}
+
+.btn-allianz:focus {
+    background-color: #075994 !important;
+    border-color: #075994 !important;
+    color: #fff !important;
+}
+
+/* ------------------- */
+
+.input-icon-box {
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ------------------- */
+
+.text-underline-separator {
+    width: 100%;
+    padding-bottom: 1%;
+    margin-bottom: 2%;
+    border-bottom: solid 1px #dedede;
+}

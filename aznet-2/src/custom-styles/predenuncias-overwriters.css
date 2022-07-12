@@ -1,0 +1,11 @@
+/* Add id="predenuncias" to nx-multi-stepper to reduce margin*/
+
+nx-multi-stepper#predenuncias div.nx-multi-stepper__items {
+  margin-top: 14px !important;
+  margin-bottom: 14px !important;
+}
+
+/* fix time picker  */
+.nx-datepicker-popup {
+  margin-bottom: -65px !important;
+}

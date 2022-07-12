@@ -1,0 +1,79 @@
+
+#hideCombo{
+  padding: 0.5rem 1.5rem !important;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: #007ab3;
+}
+
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: #007ab3;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: #007ab3;
+}
+
+.mat-tab-label-container {
+  border-bottom: 2px solid #007ab3;
+}
+
+.jumboDesp .mat-tab-label-container {
+  border-bottom: 1px solid #a9a9a9 !important;
+}
+
+
+.jumboDesp .mat-tab-label {
+  font-weight: normal;
+  /* padding: 36px 15px !important; MEJORA NAV  */
+  font-family: "AllianzNeoR" !important;
+  font-size: 16px;
+  min-width: 120px;
+  color: #616161;
+}
+
+.jumboDesp .mat-tab-label-active {
+  color: #007ab3;
+  font-weight: normal;
+  font-family: "AllianzNeoB" !important;
+}
+
+@media (max-width: 992px) {
+  .app-container {
+    padding-top: 80px
+  }
+
+  .app-container-b {
+    padding-top: 100px
+  }
+
+  .mg-bottom {
+    padding-bottom: 20px !important;
+  }
+}
+
+@media (max-width: 799px) {
+
+
+  .home-tab > .mat-tab-header {
+    display: none;
+  }
+
+}
+
+
+@media (min-width: 800px) {
+
+
+#hideCombo{
+    display:none;
+    padding: 1.5rem !important;
+}
+}
+.iframe-home{
+  display: none;
+}
+app-gop{
+    height: 300px; 
+}

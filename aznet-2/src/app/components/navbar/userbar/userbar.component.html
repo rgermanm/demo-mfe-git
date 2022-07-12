@@ -1,0 +1,281 @@
+<nav [ngStyle]="obtenerZIndex()"
+  class="navbar navbar-expand-lg navbar-light bg-white border-bottom d-flex justify-content-end py-0">
+
+  <div class="border-0 mr-auto navbar-toggler py-4" style="padding-right: 5px">
+    <a [ngStyle]="{'display': !showSearch ? 'block' : 'none'}" (click)="showHome()" class="navbar-brand mr-auto"> <img
+        src="/assets/imgs/allianz-logo.png" style="width: 128px; height: auto;" alt=""></a>
+    </div>
+
+  <span (click)="toggleSearch()" class="navbar-toggler border-0 " data-toggle="collapse" style="cursor:pointer">
+    <nx-icon *ngIf="!showSearch" name="search" size="s"></nx-icon>
+    <nx-icon *ngIf="showSearch" name="close" size="s"></nx-icon>
+  </span>
+
+  <span *ngIf="ayudasLoaded && mostrarAyudas && loadedFrame" (click)="ocultarMenuDesp()"
+    class="navbar-toggler border-0" data-target="#userSession" data-toggle="collapse" style="cursor:pointer">
+  </span>
+  <!-- CAMPANITA MOBILE -->
+  <span class="mobile textDecorationNone">
+    <button mat-icon-button
+          class="nav-link textDecorationNone"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+         >
+          <mat-icon [matBadge]="notificationCounter" 
+                    matBadgeColor="warn" 
+                    [matBadgeHidden]="notificationCounter === 0">
+            <nx-icon name="bell-o" size="s"></nx-icon>
+          </mat-icon>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-left scaled textDecorationNone" aria-labelledby="navbarDropdown" onclick="event.stopPropagation()">
+      <!-- <img src="/assets/imgs/tooltip-arrow.png" class="tooltip-arrow-b" alt="tooltip"/> -->
+    </ul>
+  </span>
+  <!-- END OF CAMPANITA MOBILE -->
+    <!-- CAMPANITA IPAD -->
+    <span class="ipad textDecorationNone">
+      <button mat-icon-button
+              class="nav-link textDecorationNone"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+             >
+              <mat-icon [matBadge]="notificationCounter" 
+                        matBadgeColor="warn" 
+                        [matBadgeHidden]="notificationCounter === 0">
+                <nx-icon name="bell-o" size="s"></nx-icon>
+              </mat-icon>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right ipadposition textDecorationNone" aria-labelledby="navbarDropdown" onclick="event.stopPropagation()">
+          <img src="/assets/imgs/tooltip-arrow.png" class="tooltip-arrow-d" alt="tooltip"/>
+        </ul>
+    </span>
+    <!-- END OF CAMPANITA IPAD -->
+  <div class="navbar-toggler border-0" *ngIf="(!ayudasLoaded  && mostrarAyudas) || !loadedFrame">
+    <span class="skeleton-dialog-box " style=" height: 20px; width: 20px;">
+      <span class="skeleton-box" style="height:10px;width: 50%"></span>
+    </span>
+  </div>
+
+
+  <div *ngIf="menuUser" class=" bg-light collapse d-lg-none  alignLeft" id="userSession">
+    <span class="btn w-100 border-bottom text-center user-box">Usuario: <strong
+        *ngIf="userInfo">{{userName}}</strong></span>
+
+
+
+
+    
+    <!-- menu usuario mobile   -->
+    <button class="btn btn-link w-100 text-right btn-logout " routerLink="/logout" type="button" name="button"> Cerrar
+      sesión </button>
+
+    <div class="dropdown-divider"></div>
+
+    <!-- <p class="dropdown-item margin-bottom-4 margin-top-4"> <strong>Configuración</strong> </p> -->
+    <a (click)="menuUser = false" class="dropdown-item font-weight-light"
+      *ngFor="let menuItem of menuUsuario | filterNroOrden: 2 "
+      (click)="linkEvent(menuItem)">{{menuItem.descNombreMenu}}</a>
+
+
+    <div class="dropdown-item font-weight-light">
+
+      <ul class="navbar-nav align-items-center ">
+       <!-- Pedidos genericos mobile  -->
+        <li *ngIf="mostrarPedidosGenericos" class="nav-item dropdown w-100">
+          <a class="dropdown-item font-weight-light ng-star-inserted" href="#" id="navbarDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            *ngFor="let item of pedidoGenerico | filterByCodUbicacion:'PEG' ">{{item.descNombreMenu}}</a>
+          <div class="dropdown-menu bg-light border-0" aria-labelledby="navbarDropdown">
+
+            <a class="dropdown-item font-weight-light"
+              style="padding: 15px 5% 15px 7% !important;background-color: #f5f5f5;"
+              *ngFor="let item of pedidoGenerico | filterByCodUbicacion:'OPCION'"
+              (click)="linkEventPg(item)">{{item.descNombreMenu}}</a>
+
+          </div>
+        </li>
+
+        <li class="nav-item dropdown w-100" *ngIf="mostrarAyudas">
+          <a class="dropdown-item font-weight-light ng-star-inserted" href="#" href="#" id="navbarDropdown"
+            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            *ngFor="let item of menuAyuda | filterByCodUbicacion:'AYUDA' ">{{item.descNombreMenu}}</a>
+          <div class="dropdown-menu bg-light dropdown-menu-right border-0 ">
+            <div class="">
+              <div class="col">
+
+                <p class="dropdown-item margin-bottom-4 margin-top-4"
+                  *ngFor="let menuItem of menuAyuda | filterByIdMenu: '413' "><strong>
+                  </strong> </p>
+
+                <a class="dropdown-item font-weight-light"
+                  style="padding: 15px 5% 15px 7% !important;background-color: #f5f5f5;"
+                  *ngFor="let menuItem of menuAyuda | filterId: '413' "
+                  (click)="linkEventAyudas(menuItem)">{{menuItem.descNombreMenu}}</a>
+              </div>
+              <div class="col">
+                <p class="dropdown-item margin-bottom-4 font-weight-bold w-100  "
+                  *ngFor="let menuItem of menuAyuda | filterByIdMenu: '423' ">
+                </p>
+                <a style="padding: 15px 5% 15px 7% !important;background-color: #f5f5f5;"
+                  class="dropdown-item font-weight-light w-100 padding-0"
+                  *ngFor="let menuItem of menuAyuda | filterId: '423' "
+                  (click)="linkEventAyudas(menuItem)">{{menuItem.descNombreMenu}}</a>
+
+                <p class="dropdown-item margin-bottom-4 w-100  font-weight-bold"
+                  *ngFor="let menuItem of menuAyuda | filterByIdMenu: '426' ">
+                </p>
+                <a style="padding: 15px 5% 15px 7% !important;background-color: #f5f5f5;"
+                  class="dropdown-item font-weight-light" *ngFor="let menuItem of menuAyuda | filterId: '426' "
+                  (click)="linkEventAyudas(menuItem)">{{menuItem.descNombreMenu}}</a>
+
+
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div> <!-- (click)="navigation(menuItem.descNombreMenu)"  -->
+
+
+  <button (click)="ocultarMenuUser()" class="navbar-toggler border-0" type="button" role="button" data-toggle="collapse"
+    data-target="#navbarSupportedContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div *ngIf="menuDesp" class="menuDespUser d-lg-none" id="navbarSupportedContent">
+    <app-menu-desp #menuDesp></app-menu-desp>
+  </div>
+  <!--  [ngStyle]="{'display': menuDesp ? 'bolck !important' : 'none !important'}" -->
+
+
+
+  <div id="menu-help" class="collapse navbar-collapse justify-content-end">
+
+    <ul class="navbar-nav align-items-center ">
+
+      <li class="nav-item dropdown w-100" *ngIf="(!pgLoaded && mostrarPedidosGenericos) || !loadedFrame">
+        <a class="nav-link">
+          <span class="skeleton-dialog-box" style="height:20px; width: 100px"></span>
+        </a>
+      </li>
+
+      <li class="nav-item dropdown w-100" *ngIf="(!ayudasLoaded  && mostrarAyudas) || !loadedFrame">
+        <a class="nav-link">
+          <span class="skeleton-dialog-box" style="height:20px; width: 100px"></span>
+        </a>
+      </li>
+
+      <li *ngIf="pgLoaded && mostrarPedidosGenericos && loadedFrame" class="nav-item dropdown pr-3">
+        <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false"
+          *ngFor="let item of pedidoGenerico | filterByCodUbicacion:'PEG' ">{{item.descNombreMenu}}</a>
+        <div class="dropdown-menu menu-aux-b  shadow" aria-labelledby="navbarDropdown">
+          <img src="/assets/imgs/tooltip-arrow.png" class="tooltip-arrow-a" alt="tooltip" />
+
+          <a class="dropdown-item font-weight-light"
+            *ngFor="let item of pedidoGenerico | filterByCodUbicacion:'OPCION' "
+            (click)="linkEventPg(item)">
+            <mat-icon [matBadge]="notiPEGcant" 
+                      matBadgeColor="warn" 
+                      [matBadgeHidden]="notiPEGcant === 0"
+                      style="position: absolute; right: 20px; bottom: 0px;"
+                      *ngIf="item.descNombreMenu === 'Notificaciones'">
+            </mat-icon>
+            {{item.descNombreMenu}} 
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown pr-3" *ngIf="ayudasLoaded && mostrarAyudas && loadedFrame">
+        <a class="nav-link" href="#" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"
+          *ngFor="let item of menuAyuda | filterByCodUbicacion:'AYUDA' ">{{item.descNombreMenu}}</a>
+
+        <div class="dropdown-menu dropdown-menu-right menu-aux-a shadow"  [ngClass]="(hasPareja) ? 'centered-menu' : ''">
+          <img src="/assets/imgs/tooltip-arrow.png" class="tooltip-arrow-b" alt="tooltip"/>
+          <div class="row">
+
+            <div class="col-md-7" style="width: 350px !important;"
+              *ngFor="let menuItem of menAyuda[0].children| slice:0:1">
+              <p class="dropdown-item mb-1"> <strong>{{menuItem.descNombreMenu}}</strong> </p>
+
+              <a class="dropdown-item font-weight-light" *ngFor="let menuItemElement of menuItem.children"
+                (click)="linkEventAyudas(menuItemElement)">{{menuItemElement.descNombreMenu}}</a>
+
+            </div>
+
+            <div class="col-md-5" style="width: 350px !important;">
+              <div *ngFor="let menuItem of  menAyuda[0].children | slice:1 ">
+                <p class="dropdown-item mb-1 font-weight-bold w-100 ">{{menuItem.descNombreMenu}}</p>
+                <a class="dropdown-item font-weight-light w-100 padding-0"
+                  *ngFor="let menuItemElement of menuItem.children  "
+                  (click)="linkEventAyudas(menuItemElement)">{{menuItemElement.descNombreMenu}}</a>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </li>
+
+
+      <li class="nav-item dropdown border-left">
+  
+      </li>
+      <li class="nav-item dropdown border-left">
+      <!-- CAMPANITA  -->
+      <div class="container textDecorationNone">
+
+        <ul class="dropdown-menu dropdown-menu-right menuNoti textDecorationNone" aria-labelledby="navbarDropdown" onclick="event.stopPropagation()">
+          <img src="/assets/imgs/tooltip-arrow.png" class="tooltip-arrow-b" alt="tooltip"/>
+        </ul>
+      </div>
+      </li>  
+        <!-- END OF CAMPANITA -->
+        
+        
+      <li class="nav-item dropdown border-left">
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="ml-2 mr-4">
+          </span>
+          <span class="mr-3">
+
+            <span *ngIf="!userInfoLoaded" class="skeleton-dialog-box" style="height:15px; width: 200px"></span><br
+              *ngIf="!userInfoLoaded">
+            <span *ngIf="!userInfoLoaded" class="skeleton-dialog-box" style="height:15px; width: 120px"></span>
+
+            <strong *ngIf="userInfo">Bienvenido, {{userInfo.descNombre | titlecase}} </strong> <br> <small
+              *ngIf="userInfo">Usuario: {{userName}}</small>
+          </span>
+        </a>
+
+        <div class="dropdown-menu w-100 shadow" aria-labelledby="navbarDropdown">
+
+          <img src="/assets/imgs/tooltip-arrow.png" class="tooltip-arrow-c" alt="tooltip" />
+
+          <button class="btn btn-link w-100 text-right" type="button" routerLink="/logout" name="button"> Cerrar
+            sesión</button>
+
+          <div class="dropdown-divider"></div>
+
+          <!-- <a class="dropdown-item" > <strong>Configuración</strong> </a> -->
+          <a class="dropdown-item font-weight-light" *ngFor="let menuItem of menuUsuario | filterNroOrden: 2 "
+            (click)="linkEvent(menuItem)">{{menuItem.descNombreMenu}}</a>
+
+        </div> <!--   (click)="navigation(menuItem.descNombreMenu)"  -->
+      </li>
+
+
+    </ul>
+
+  </div>
+</nav>

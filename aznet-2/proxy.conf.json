@@ -1,0 +1,14 @@
+{
+    "/api/*": {
+        "target": "http://test-net.allianz.com.ar",
+        "secure": false,
+        "logLevel": "debug",
+		"headers": {"host":"test-net.allianz.com.ar"}
+    },
+    "/public/*": {
+        "target": "http://test-net.allianz.com.ar",
+        "secure": false,
+        "logLevel": "debug",
+		"headers": {"host":"test-net.allianz.com.ar"}
+    }
+}

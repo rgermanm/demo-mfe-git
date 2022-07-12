@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+  <title>Allianz Net 2.0</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap-material-design.css">
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <link rel="stylesheet" type="text/css" href="styles/all.css">
+
+</head>
+
+<body>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalRecoveryPass" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+          <h4 class="text-center">Recuperar contraseña</h4>
+
+          <p>Ingresa la dirección de correo electrónico asociada a tu cuenta y te enviaremos un enlace para restablecer
+            tu contraseña.</p>
+
+          <form>
+            <div class="form-group">
+              <label for="userName" class="bmd-label-floating">Usuario</label>
+              <input type="text" class="form-control" id="userName">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputEmail1" class="bmd-label-floating">Email</label>
+              <input type="email" class="form-control" id="exampleInputEmail1">
+            </div>
+
+            <button type="submit" class="btn btn-block btn-raised btn-allianz text-uppercase"
+              data-dismiss="modal">enviar
+              email</button>
+          </form>
+
+        </div>
+
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-block btn-raised btn-info text-uppercase" data-dismiss="modal">enviar
+            email</button>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <nav class="navbar navbar-light border-bottom py-3">
+      <a class="navbar-brand" href="#">
+        <img src="./img/allianz-logo.png" width="128" alt="Logo Allianz">
+      </a>
+    </nav>
+
+    <div class="container py-4">
+
+      <h5 class="text-center text-dark">Bienvenido</h5>
+      <h1 class="text-center text-dark">Iniciar sesión en AllianzNet</h1>
+
+      <div class="row">
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3  col-sm-10 offset-sm-1">
+
+          <form class="my-5 submit-validator">
+
+            <div class="form-group">
+              <label for="username" class="bmd-label-floating">Nombre de usuario</label>
+              <input type="text" class="form-control" id="username">
+            </div>
+
+            <div class="form-group" id="show_hide_password">
+              <label for="password" class="bmd-label-floating">Contraseña</label>
+              <div class="input-icon-box">
+                <a href=""><i class="fas fa-eye-slash" aria-hidden="true"></i></a>
+              </div>
+              <input type="password" class="form-control" id="password">
+            </div>
+
+            <div class="form-group">
+              <a href="#" class="text-uppercase" data-toggle="modal" data-target="#modalRecoveryPass">
+                <small><i class="fas fa-arrow-right"></i> olvidé mi contraseña</small>
+              </a>
+            </div>
+
+            <input type="submit" class="btn btn-block btn-raised btn-allianz" value="iniciar sesión" />
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <footer class="border-top py-4 px-5">
+      <h6 class="text-center mb-4">
+        <small class="text-muted">Bienvenido a los servicios internet de Allianz Argentina (Allianz Group), servicios pensados para entregar herramientas de gestión para la cartera de los Productores de Seguros a sus oficinas. Si usted no se encuentra registrado para utilizar estos servicios, le solicitamos registrarse a través de su Ejecutivo de Cuenta. Usted está ingresando a un sitio seguro. Utiliza un Certificado Digital provisto por Verisign a través de Certisur.</small>
+      </h6>
+      <img src="img/registro-nacional-base-dato.jpg" width="160" class="mx-auto d-block"
+        alt="Registro Nacional de Bases de Datos">
+    </footer>
+
+  </div>
+
+  <script src="js/jquery-3.3.1.slim.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap-material-design.js"></script>
+  <script src="js/functions.js"></script>
+
+  <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+.cursor{
+  cursor: pointer !important;
+}
+.btn-outline-primary {
+  color: #007AB3 ;
+  border-color: #007AB3 !important;
+
+
+}
+.cursor-context{
+
+  cursor: context-menu !important;
+}
+.btn-outline-primary:hover{
+   color:white;
+   background-color: #007AB3;
+}
+
+.star-border {
+    
+    display: block;
+    
+    width: 16px;
+    height: 16px;
+    visibility: visible;
+  
+    /*background-image: url(../../../../../../assets/imgs/icon-start-stroke.png);*/
+    background-image: url(../../assets/imgs/icon-start-stroke.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    
+    margin-right: 10px;
+    margin-bottom: 5px;
+
+  
+  }
+
+  .lbl-blue-light {color:#007AB3 !important}
+  .padding{
+    padding-top: 0px !important;
+  }
+  .btn-star {
+    
+    display: block;
+      
+    
+    width: 16px;
+    height: 16px;
+    visibility: visible;
+
+    /*background-image: url(../../../../../../assets/imgs/icon-start-stroke.png);*/
+    background-image: url(../../assets/imgs/icon-start-fill.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+   
+    margin-right: 10px;
+    margin-bottom: 5px;
+} 
+.btn-star-border {
+    
+    display: block;
+    
+    width: 16px;
+    height: 16px;
+    visibility: hidden;
+
+    /*background-image: url(../../../../../../assets/imgs/icon-start-stroke.png);*/
+    background-image: url(../../assets/imgs/icon-start-stroke.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    cursor: pointer;
+} 
+.mat-fab.mat-primary, .mat-flat-button.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
+  background-color: #007ab3;
+}
+
+.underline:hover{
+   text-decoration: underline !important;
+}
+
+/**/
+
+.btn-outline-primary {
+  border-color: #007AB3 !important;
+  color: #007AB3 !important;
+}
+
+
+@media (min-width: 1200px){
+  .container {
+    max-width: 100%;
+}
+}
+
+@media (min-width: 992px){
+  .container {
+    max-width: 100%;
+}
+@media (max-width: 992px){
+  .app-container-b{
+    padding-top: 86px;
+  }
+}
+
+}

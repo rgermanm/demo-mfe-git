@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" *ngIf="!loaded || !loadedFrame">
+      <li class="nav-item dropdown " *ngFor="let n of [0, 0, 0, 0]">
+        <a class="nav-link">
+          <span class="skeleton-dialog-box" style="height:20px; width: 100px"></span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav mr-auto" *ngIf="mostrarMenu && loadedFrame">
+      <li class="nav-item dropdown " data-toggle="collapse" *ngFor="let menuOp1 of menu1 ">
+        <a (click)="clickLvl1(menuOp1.children)" class="nav-link" style="cursor:pointer" id="{{ menuOp1.idMenu }}"
+          aria-expanded="false">{{ menuOp1.descNombreMenu | titlecase }}
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li *ngIf="loadedFavoritos && mostrarMenu && loadedFrame" class="nav-item dropdown " data-toggle="collapse">
+        <a [routerLinkActive]="['router-link-active']" class="nav-link" style="cursor:pointer" id="Favoritos"
+          aria-expanded="false" data-toggle="dropdown" aria-haspopup="true" (click)="insideOutsideClick = false">
+          Favoritos
+          <span class="sr-only">(current)</span>
+        </a>
+        <div class="dropdown-menu menu-aux-a menuFavoritos  shadow" aria-labelledby="Favoritos">
+          <img src="/assets/imgs/tooltip-arrow.png" class="tooltip-arrow-a" alt="tooltip" />
+      <li class="fav-item" *ngFor="let item of favoritosConBread" (click)="linkEventFavoritos(item.menuObject)"
+        style="cursor:pointer">
+        <div class="menuName-bread">
+          <a id="itemFavorito" class="font-weight-light ">{{
+                item.menuObject.descNombreMenu
+              }}</a>
+          <div class="fav-bread text-secondary ">
+            <small> {{ item.breadcrumb.lvl1Name | titlecase }} </small>
+            <small> ></small>
+            <small> {{ item.breadcrumb.lvl2Name }} </small>
+            <small> ></small>
+            <small> {{ item.breadcrumb.lvl3Name }} </small>
+          </div>
+        </div>
+        <div class="cruz">
+          <span>
+           </span>
+        </div>
+      </li>
+
+      <li (click)="lvl1Clicked = false" class="liFavoritos fav-item" *ngIf="favoritosMenu.length == 0">
+        <span (click)="lvl1Clicked = false" class="star-border"></span>
+        <span (click)="lvl1Clicked = false" class=" font-weight-light">Todavía no se han seleccionado favoritos</span>
+      </li>
+  </div>
+  </li>
+  </ul>
+  <ul class="navbar-nav mr-auto" *ngIf="!loadedFavoritos || !loadedFrame">
+    <li class="nav-item dropdown ">
+      <a class="nav-link">
+        <span class="skeleton-dialog-box" style="height:20px; width: 100px"></span>
+      </a>
+    </li>
+  </ul>
+  </div>
+</nav>
+
+<div class="jumbotron bg-light jumbotron-fluid jumboDesp dropdown " *ngIf="lvl1Clicked && insideOutsideClick">
+  <div class="m-0" style="background-color: rgba(246, 245, 245, 1); max-width: 100%;">
+    <mat-tab-group #tabGroup>
+      <mat-tab *ngFor="let menu2 of lvl2" aria-label="{{ menu2.idMenu }}">
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">
+            </mat-icon>
+          {{ menu2.descNombreMenu }}
+        </ng-template>
+
+        <div class="row  m-0 " style="overflow-y: auto; max-height: 500px;"><!-- MEJORA NAV -->
+          <div class="col-3 py-1 w-25" *ngFor="let menu3 of menu2.children ">
+            <h6 class="text-dark">{{ menu3.descNombreMenu }}</h6>
+
+            <ul class="navbar-av collapse-li">
+              <li class="nav-item" *ngFor="let menu4 of menu3.children">
+                <span *ngIf="menu4.fav" id="estrellaFavoritos" (click)="quitarFavorito(menu4)" class="btn-star"></span>
+                <span *ngIf="!menu4.fav" id="estrellaFavoritos" (click)="agregarFavorito(menu4)"
+                  class="btn-star-border"></span>
+                <a (click)="linkEvent(menu4)" class="text-dark  nav-link hoverAzul py-1 hover-icon-star">
+                  {{ menu4.descNombreMenu }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

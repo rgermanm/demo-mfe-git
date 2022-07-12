@@ -1,0 +1,11 @@
+ <!-- NAVEGADOR -->
+ <app-navbar class="app-navbar"></app-navbar>
+
+ <!-- ROUTER -->
+ <div [className]="hideHome ? 'hide-iframe-home' : ' '">
+   <router-outlet #child> </router-outlet>
+ </div>
+
+  <!-- FRAME -->
+  <app-hidden-iframe [className]="!hideHome ? 'hide-iframe-home' : ' '"></app-hidden-iframe>
+
